@@ -9,6 +9,7 @@ We willen de computer een spel leren spelen.
 - More
 - Dammen
 - Connect four
+- Dots and Boxes
 
 ## Leermateriaal
 [Machine Learning Recipes with Josh Gordon](http://www.youtube.com/playlist?list=PLOU2XLYxmsIIuiBfYad6rFYQU_jL2ryal)
