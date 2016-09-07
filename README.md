@@ -12,3 +12,4 @@ We willen de computer een spel leren spelen.
 
 ## Leermateriaal
 [Machine Learning Recipes with Josh Gordon](http://www.youtube.com/playlist?list=PLOU2XLYxmsIIuiBfYad6rFYQU_jL2ryal)
+[MarI/O - Machine Learning for Video Games](https://youtu.be/qv6UVOQ0F44)
