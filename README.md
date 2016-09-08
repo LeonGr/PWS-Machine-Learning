@@ -18,4 +18,7 @@ We willen de computer een spel leren spelen.
 
 [A Tour of Machine Learning Algorithms](http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/)
 
+### Tic tac toe
 [Teaching a Computer to Play TicTacToe](http://www.christopia.net/blog/teaching-a-computer-to-play-tictactoe)
+
+[AI overkill – Teaching a neural network to play Tic-Tac-Toe](https://dratewka.wordpress.com/2013/03/15/ai-overkill-teaching-a-neural-network-to-play-tic-tac-toe/)
