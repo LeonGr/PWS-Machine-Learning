@@ -17,3 +17,5 @@ We willen de computer een spel leren spelen.
 [MarI/O - Machine Learning for Video Games](https://youtu.be/qv6UVOQ0F44)
 
 [A Tour of Machine Learning Algorithms](http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/)
+
+[Teaching a Computer to Play TicTacToe](http://www.christopia.net/blog/teaching-a-computer-to-play-tictactoe)
