@@ -1,9 +1,19 @@
 # PWS Machine Learning
 
-## Het idee
-We willen de computer een spel leren spelen.
+## Onderzoek
+### Onderwerp
+Machine learning
 
-### Spel ideeën
+### Hoofdvraag
+~~Wat is de beste manier om een computer te leren een spel te spelen?~~
+
+Hoe schrijf je een programma dat een computer leert een spel te spelen?
+
+- Hoe kun je een computer laten leren?
+- Welke manier van machine learning is het meest efficiënt?
+- 
+
+## Spel ideeën
 - Tic-tac-toe
 - Sudoku
 - More
