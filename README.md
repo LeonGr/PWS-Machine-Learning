@@ -11,7 +11,6 @@ Hoe schrijf je een programma dat een computer leert een spel te spelen?
 
 - Hoe kun je een computer laten leren?
 - Welke manier van machine learning is het meest efficiënt?
-- 
 
 ## Spel ideeën
 - Tic-tac-toe
