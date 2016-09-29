@@ -12,6 +12,16 @@ Hoe schrijf je een programma dat een computer leert een spel te spelen?
 - Hoe kun je een computer laten leren?
 - Welke manier van machine learning is het meest efficiënt?
 
+### Plan van aanpak
+- Relevante informatie zoeken over onderwerp
+    * Hoe leert een computer?
+    * Wat zijn efficiënte algoritmes voor het leren.
+- Test gevonden algoritme tic tac toe
+    * Controleer uitkomst
+    * Gebruik algoritme voor ingewikkelder spel bijvoorbeeld dots & boxes
+
+
+
 ## Spel ideeën
 - Tic-tac-toe
 - Sudoku
