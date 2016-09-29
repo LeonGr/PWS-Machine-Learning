@@ -20,8 +20,6 @@ Hoe schrijf je een programma dat een computer leert een spel te spelen?
     * Controleer uitkomst
     * Gebruik algoritme voor ingewikkelder spel bijvoorbeeld dots & boxes
 
-
-
 ## Spel ideeën
 - Tic-tac-toe
 - Sudoku
