@@ -10,13 +10,20 @@ def check_winner():
             print("player " + str(turn) + " is the winner")
             return True
 
+    scored1 = scored2 = 0
     for x in range(3):
+        scored1 += board[x][x]
+        scored2 += list(reversed(board[x]))[x]
         score = 0
         for y in range(3):
             score += board[y][x]
         if score == 3 or score == -3:
             print("player " + str(turn) + " is the winner")
             return True
+
+    if scored1 == 3 or scored1 == -3 or scored2 == 3 or scored2 == -3:
+        print("player " + str(turn) + " is the winner")
+        return True
 
 def no_winner():
     for x in board:
