@@ -35,7 +35,13 @@ Hoe schrijf je een programma dat een computer leert een spel te spelen?
 
 [A Tour of Machine Learning Algorithms](http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/)
 
+[What algorithm to use](http://cs.stackexchange.com/questions/1117/machine-learning-algorithm-to-play-connect-four?newreg=60400703eed44ecdbe7d720232256dc5)
+
 ### Tic tac toe
 [Teaching a Computer to Play TicTacToe](http://www.christopia.net/blog/teaching-a-computer-to-play-tictactoe)
 
 [AI overkill – Teaching a neural network to play Tic-Tac-Toe](https://dratewka.wordpress.com/2013/03/15/ai-overkill-teaching-a-neural-network-to-play-tic-tac-toe/)
+
+#### Connect four
+[Connect Four and Minimax](https://lukasvermeer.wordpress.com/2011/09/24/connect-four-and-minimax/)
+
