@@ -34,7 +34,7 @@ def no_winner():
 
 print_board()
 
-while(True):
+while True:
     moveX = int(input())
     moveY = int(input())
     if not board[moveX][moveY]:

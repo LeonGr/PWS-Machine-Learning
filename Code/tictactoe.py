@@ -11,7 +11,7 @@ class ExperimentGenerator:
         self.board = self.generateBoard()
         self.history = [copy.deepcopy(self.board)]
 
-    def setBoard(self,board):
+    def setBoard(self, board):
         if board == 0:
             print "zero board"
         self.board = board
@@ -148,7 +148,7 @@ class ExperimentGenerator:
             board = self.board
         return board
 
-    def getColumns(self,board = 0):
+    def getColumns(self, board = 0):
         if board == 0:
             board = self.board
 
@@ -162,7 +162,7 @@ class ExperimentGenerator:
 
         return columns
 
-    def getDiagonals(self,board = 0):
+    def getDiagonals(self, board = 0):
         if board == 0:
             board = self.board
 
@@ -205,11 +205,11 @@ class ExperimentGenerator:
     def getHistory(self):
         return self.history
 
-    def setX(self,x,y):
+    def setX(self, x, y):
         self.board[y][x] = 1
         self.history.append(copy.deepcopy(self.board))
 
-    def setO(self,x,y):
+    def setO(self, x, y):
         self.board[y][x] = 2
 
     def printBoard(self, board = 0):
@@ -237,7 +237,7 @@ class ExperimentGenerator:
         print ""
 
 class PerformanceSystem:
-    def __init__(self,board,hypothesis,mode = 1):
+    def __init__(self, board, hypothesis, mode = 1):
         self.board = board
         self.hypothesis = hypothesis
         self.mode = mode
@@ -247,7 +247,7 @@ class PerformanceSystem:
     def setUpdateConstant(self, constant):
         self.updateConstant = constant
 
-    def evaluateBoard(self,board):
+    def evaluateBoard(self, board):
         x1,x2,x3,x4,x5,x6 = self.board.getFeatures(board)
 
         w0,w1,w2,w3,w4,w5,w6 = self.hypothesis
@@ -293,7 +293,7 @@ class PerformanceSystem:
         self.board.setBoard(bestSuccessor)
 
 
-    def updateWeights(self,history,trainingExamples):
+    def updateWeights(self, history, trainingExamples):
         for i in range(0,len(history)):
             w0,w1,w2,w3,w4,w5,w6 = self.hypothesis
             vEst = self.evaluateBoard(history[i])
@@ -312,25 +312,25 @@ class PerformanceSystem:
 
 
 class Critic:
-    def __init__(self,hypothesis,mode = 1):
+    def __init__(self, hypothesis, mode = 1):
         self.hypothesis = hypothesis
         self.mode = mode
         self.checker = ExperimentGenerator()
 
-    def evaluateBoard(self,board):
+    def evaluateBoard(self, board):
         x1,x2,x3,x4,x5,x6 = self.checker.getFeatures(board)
 
         w0,w1,w2,w3,w4,w5,w6 = self.hypothesis
 
         return w0 + w1*x1 + w2*x2 + w3*x3 + w4*x4 + w5*x5 + w6*x6
 
-    def setHypothesis(self,hypothesis):
+    def setHypothesis(self, hypothesis):
         self.hypothesis = hypothesis
 
-    def setMode(self,mode):
+    def setMode(self, mode):
         self.mode = mode
 
-    def getTrainingExamples(self,history):
+    def getTrainingExamples(self, history):
         trainingExamples = []
 
         for i in range(0,len(history)):
@@ -354,19 +354,24 @@ class Critic:
 
 
 board = ExperimentGenerator()
+
 hypothesis1 = (.5,.5,.5,.5,.5,.5,.5)
 hypothesis2 = (.5,.5,.5,.5,.5,.5,.5)
-player1 = PerformanceSystem(board,hypothesis1,1)
-player2 = PerformanceSystem(board,hypothesis2,2)
+
+player1 = PerformanceSystem(board, hypothesis1, 1)
+player2 = PerformanceSystem(board, hypothesis2, 2)
+
+player1.setUpdateConstant(.4)
 player2.setUpdateConstant(.4)
-critic1 = Critic(hypothesis1,1)
-critic2 = Critic(hypothesis2,2)
+
+critic1 = Critic(hypothesis1, 1)
+critic2 = Critic(hypothesis2, 2)
 
 xwins = 0
 owins = 0
 draws = 0
 
-for i in range(0,10000):
+for i in range(0,100000):
     board = ExperimentGenerator()
     player1.setBoard(board)
     player2.setBoard(board)
@@ -378,7 +383,7 @@ for i in range(0,10000):
             break
         #player2.chooseMove()
         player2.chooseRandom()
-    board.printBoard()
+    #board.printBoard()
 
     winner = board.getWinner()
 
@@ -402,29 +407,29 @@ print "X won " + str(xwins) + " games."
 print "O won " + str(owins) + " games."
 print "There were " + str(draws) + " draws."
 
-while True:
+for i in range(1):
     board = ExperimentGenerator()
     player1.setBoard(board)
     player2.setBoard(board)
 
     while(not board.isDone()):
-        #board.printBoard()
-        #xval = input("Enter xcoordinate: ")
-        #yval = input("Enter ycoordinate: ")
-        #board.setX(xval,yval)
-
-        #player1.chooseRandom()
-        player1.chooseMove()
-        if board.isDone():
-            break
-
         board.printBoard()
         xval = input("Enter xcoordinate: ")
         yval = input("Enter ycoordinate: ")
-        board.setO(xval,yval)
+        board.setX(xval,yval)
+
+        #player1.chooseRandom()
+        #player1.chooseMove()
+        if board.isDone():
+            break
+
+        #board.printBoard()
+        #xval = input("Enter xcoordinate: ")
+        #yval = input("Enter ycoordinate: ")
+        #board.setO(xval,yval)
 
 
-        #player2.chooseMove()
+        player2.chooseMove()
         #player2.chooseRandom()
     board.printBoard()
 
@@ -447,5 +452,5 @@ while True:
     player2.updateWeights(board.getHistory(),critic2.getTrainingExamples(board.getHistory()))
 
 
-#print player1.getHypothesis()
-#print player2.getHypothesis()
+print player1.getHypothesis()
+print player2.getHypothesis()

@@ -44,5 +44,5 @@ Hoe schrijf je een programma dat een computer leert een spel te spelen?
 
 [Tic Tac Toe: Understanding The Minimax Algorithm](http://neverstopbuilding.com/minimax)
 
-#### Connect four
+### Connect four
 [Connect Four and Minimax](https://lukasvermeer.wordpress.com/2011/09/24/connect-four-and-minimax/)
