@@ -42,6 +42,7 @@ Hoe schrijf je een programma dat een computer leert een spel te spelen?
 
 [AI overkill – Teaching a neural network to play Tic-Tac-Toe](https://dratewka.wordpress.com/2013/03/15/ai-overkill-teaching-a-neural-network-to-play-tic-tac-toe/)
 
+[Tic Tac Toe: Understanding The Minimax Algorithm](http://neverstopbuilding.com/minimax)
+
 #### Connect four
 [Connect Four and Minimax](https://lukasvermeer.wordpress.com/2011/09/24/connect-four-and-minimax/)
-
