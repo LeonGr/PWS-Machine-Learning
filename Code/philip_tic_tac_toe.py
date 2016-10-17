@@ -58,6 +58,7 @@ while True:
     moveY = int(input())
     
     if not game.board[moveX][moveY]:
+        # TODO move this to the game class
         game.board[moveX][moveY] = game.turn
         if game.check_winner():
             break
