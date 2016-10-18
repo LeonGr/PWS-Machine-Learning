@@ -65,7 +65,6 @@ def score(game, depth):
 def minimax(game, depth=0):
     global choice
 
-    # Checks score in next turn. THIS IS A PROBLEM!!!!
     if game.game_finished(): return score(game, depth)
 
     depth += 1
@@ -75,7 +74,6 @@ def minimax(game, depth=0):
     # Populate the scores array, recursing as needed
     for move in game.get_available_moves():
         possible_game = deepcopy(game)
-        # Goes to next turn
         possible_game.place_turn(move[0], move[1])
 
         scores.append(minimax(possible_game, depth))
@@ -96,6 +94,7 @@ def minimax(game, depth=0):
 # Create a new game
 game = Game()
 
+# Run the game against a real player
 while True:
     if game.game_finished():
         if game.check_winner() is 1:
