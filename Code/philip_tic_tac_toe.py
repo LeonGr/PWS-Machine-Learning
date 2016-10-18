@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-class Game:   
+class Game:
     def __init__(self, board=[[0 for x in range(3)] for y in range(3)], turn=1):
         self.board = board
         self.turn = turn
@@ -26,6 +26,8 @@ class Game:
 
         if scored1 == 3 or scored1 == -3 or scored2 == 3 or scored2 == -3:
             return self.turn
+
+        return 0
 
     def no_winner(self):
         for x in self.board:
@@ -56,30 +58,41 @@ class Game:
 
 #### Machine learning stuff
 choice = []
+ai_game = None
 
 def score(game, depth):
-    if game.check_winner() is 1:
-        return 10 - depth
-    elif game.check_winner() is -1:
-        return depth - 10
-    else: return 0
+    return game.check_winner() * (10 - depth)
 
 def minimax(game, depth=0):
-    global choice
+    global choice, ai_game
 
+    # Checks score in next turn. THIS IS A PROBLEM!!!!
     if game.game_finished(): return score(game, depth)
 
     depth += 1
     scores = []
     moves = []
-    
+
     # Populate the scores array, recursing as needed
     for move in game.get_available_moves():
         possible_game = deepcopy(game)
+        # Goes to next turn
         possible_game.place_turn(move[0], move[1])
 
         scores.append(minimax(possible_game, depth))
         moves.append(move)
+
+    if depth is 2 or depth is 1:
+        print("Game info")
+        print(game.turn)
+        game.print_board()
+        print()
+        print("Other info")
+        print(depth)
+        print(scores)
+        print(moves)
+        print()
+        print()
 
     # Do the min or the max calculation
     if game.turn is 1:
@@ -94,7 +107,7 @@ def minimax(game, depth=0):
 #### End of machine learning stuff
 
 # Create a new game
-game = Game()
+game = Game(board=[[1,-1,0],[0,0,0],[1,0,0]], turn=-1)
 
 while True:
     if game.game_finished():
@@ -110,14 +123,14 @@ while True:
 
         moveX = int(input("x: "))
         moveY = int(input("y: "))
-        
+
         if not game.place_turn(moveX, moveY):
             print("Not a valid play, try again.")
-
-        game.print_board()
     else:
         # Let the machine play a turn
+        ai_game = deepcopy(game)
         minimax(game)
         game.place_turn(choice[0], choice[1])
+        break
 
 game.print_board()
