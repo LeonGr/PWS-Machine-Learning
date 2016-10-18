@@ -12,7 +12,7 @@ class Game:
     def check_winner(self):
         for x in self.board:
             if sum(x) == 3 or sum(x) == -3:
-                return self.turn
+                return 1 if sum(x) % 1 == 0 else -1
 
         scored1 = scored2 = 0
         for x in range(3):
@@ -22,10 +22,10 @@ class Game:
             for y in range(3):
                 score += self.board[y][x]
             if score == 3 or score == -3:
-                return self.turn
+                return 1 if score % 1 == 0 else -1
 
         if scored1 == 3 or scored1 == -3 or scored2 == 3 or scored2 == -3:
-            return self.turn
+            return 1 if scored1 % 1 == 0 or scored2 % 1 == 0 else -1
 
         return 0
 
@@ -58,13 +58,12 @@ class Game:
 
 #### Machine learning stuff
 choice = []
-ai_game = None
 
 def score(game, depth):
     return game.check_winner() * (10 - depth)
 
 def minimax(game, depth=0):
-    global choice, ai_game
+    global choice
 
     # Checks score in next turn. THIS IS A PROBLEM!!!!
     if game.game_finished(): return score(game, depth)
@@ -82,18 +81,6 @@ def minimax(game, depth=0):
         scores.append(minimax(possible_game, depth))
         moves.append(move)
 
-    if depth is 2 or depth is 1:
-        print("Game info")
-        print(game.turn)
-        game.print_board()
-        print()
-        print("Other info")
-        print(depth)
-        print(scores)
-        print(moves)
-        print()
-        print()
-
     # Do the min or the max calculation
     if game.turn is 1:
         max_score_index = scores.index(max(scores))
@@ -107,7 +94,7 @@ def minimax(game, depth=0):
 #### End of machine learning stuff
 
 # Create a new game
-game = Game(board=[[1,-1,0],[0,0,0],[1,0,0]], turn=-1)
+game = Game()
 
 while True:
     if game.game_finished():
@@ -128,9 +115,7 @@ while True:
             print("Not a valid play, try again.")
     else:
         # Let the machine play a turn
-        ai_game = deepcopy(game)
         minimax(game)
         game.place_turn(choice[0], choice[1])
-        break
 
 game.print_board()
