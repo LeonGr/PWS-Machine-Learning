@@ -46,7 +46,7 @@ class Game:
             return True
         else: return False
 
-    def get_available_moves(self):
+    def available_moves(self):
         available_moves = []
 
         for x in range(len(self.board)):
@@ -56,43 +56,72 @@ class Game:
 
         return available_moves
 
+# Create a new game
+game = Game()
+
 #### Machine learning stuff
 choice = []
+ai_turn = 0
+
+def ai_move():
+    global ai_turn
+
+    ai_turn = game.turn
+    bound = len(game.available_moves()) + 2
+    minimax(game, 0, -bound, bound)
+    game.place_turn(choice[0], choice[1])
 
 def score(game, depth):
     return game.check_winner() * (10 - depth)
 
-def minimax(game, depth=0):
+def minimax(game, depth, alpha, beta):
     global choice
 
     if game.game_finished(): return score(game, depth)
 
-    depth += 1
     scores = []
     moves = []
 
     # Populate the scores array, recursing as needed
-    for move in game.get_available_moves():
+    for move in game.available_moves():
         possible_game = deepcopy(game)
         possible_game.place_turn(move[0], move[1])
 
-        scores.append(minimax(possible_game, depth))
-        moves.append(move)
+        game_score = minimax(possible_game, depth + 1, alpha, beta)
+
+        # Older stuff
+        #scores.append(game_score)
+        #moves.append(move)
+
+        # AI is minimizing
+        if game.turn is ai_turn:
+            scores.append(game_score)
+            moves.append(move)
+            beta = min(beta, game_score)
+        else:
+            alpha = max(alpha, game_score)
+
+        if beta <= alpha:
+            break
 
     # Do the min or the max calculation
-    if game.turn is 1:
-        max_score_index = scores.index(max(scores))
-        choice = moves[max_score_index]
-        return scores[max_score_index]
+    if game.turn is ai_turn:
+        choice = moves[scores.index(min(scores))]
+        return beta
     else:
-        min_score_index = scores.index(min(scores))
-        choice = moves[min_score_index]
-        return scores[min_score_index]
+        return alpha
+
+    # Older stuff
+    #if game.turn is 1:
+    #    max_score_index = scores.index(max(scores))
+    #    choice = moves[max_score_index]
+    #    return scores[max_score_index]
+    #else:
+    #    min_score_index = scores.index(min(scores))
+    #    choice = moves[min_score_index]
+    #    return scores[min_score_index]
 
 #### End of machine learning stuff
-
-# Create a new game
-game = Game()
 
 # Run the game against a real player
 while True:
@@ -114,7 +143,6 @@ while True:
             print("Not a valid play, try again.")
     else:
         # Let the machine play a turn
-        minimax(game)
-        game.place_turn(choice[0], choice[1])
+        ai_move()
 
 game.print_board()
