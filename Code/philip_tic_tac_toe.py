@@ -72,7 +72,7 @@ def ai_move():
     game.place_turn(choice[0], choice[1])
 
 def score(game, depth):
-    return game.check_winner() * (10 - depth)
+    return ai_turn * game.check_winner() * (10 - depth)
 
 def minimax(game, depth, alpha, beta):
     global choice
@@ -97,19 +97,19 @@ def minimax(game, depth, alpha, beta):
         if game.turn is ai_turn:
             scores.append(game_score)
             moves.append(move)
-            beta = min(beta, game_score)
-        else:
             alpha = max(alpha, game_score)
+        else:
+            beta = min(beta, game_score)
 
         if beta <= alpha:
             break
 
     # Do the min or the max calculation
     if game.turn is ai_turn:
-        choice = moves[scores.index(min(scores))]
-        return beta
-    else:
+        choice = moves[scores.index(max(scores))]
         return alpha
+    else:
+        return beta
 
     # Older stuff
     #if game.turn is 1:
