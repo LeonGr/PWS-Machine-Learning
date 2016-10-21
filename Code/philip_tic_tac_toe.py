@@ -6,8 +6,25 @@ class Game:
         self.turn = turn
 
     def print_board(self):
+        printed_board = []
+
         for row in self.board:
-            print(row)
+            printed_row = []
+            for entry in row:
+                if entry == 0:
+                    printed_row.append('   ')
+                elif entry == 1:
+                    printed_row.append(' X ')
+                elif entry == -1:
+                    printed_row.append(' O ')
+            printed_board.append(printed_row)
+
+        print()
+        print(printed_board[0][0] + '|' + printed_board[0][1] + '|' + printed_board[0][2])
+        print("-----------")
+        print(printed_board[1][0] + '|' + printed_board[1][1] + '|' + printed_board[1][2])
+        print("-----------")
+        print(printed_board[2][0] + '|' + printed_board[2][1] + '|' + printed_board[2][2])
 
     def check_winner(self):
         for x in self.board:
