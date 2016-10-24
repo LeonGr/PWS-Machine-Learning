@@ -57,8 +57,8 @@ class Game:
         return self.check_winner() or self.no_winner()
 
     def place_turn(self, x, y):
-        if not self.board[x][y]:
-            self.board[x][y] = self.turn
+        if not self.board[y][x]:
+            self.board[y][x] = self.turn
             self.turn *= -1
             return True
         else: return False
@@ -66,9 +66,9 @@ class Game:
     def available_moves(self):
         available_moves = []
 
-        for x in range(len(self.board)):
-            for y in range(len(self.board[x])):
-                if not self.board[x][y]:
+        for y in range(len(self.board)):
+            for x in range(len(self.board[y])):
+                if not self.board[y][x]:
                     available_moves.append([x, y])
 
         return available_moves
@@ -110,7 +110,7 @@ def minimax(game, depth, alpha, beta):
         #scores.append(game_score)
         #moves.append(move)
 
-        # AI is minimizing
+        # AI is the maximizing player
         if game.turn is ai_turn:
             scores.append(game_score)
             moves.append(move)
