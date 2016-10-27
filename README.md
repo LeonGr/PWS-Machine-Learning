@@ -46,5 +46,7 @@ Hoe schrijf je een programma dat een computer leert een spel te spelen?
 
 [Tic-tac-toe AI - Java Game Programming Case Study](https://www.ntu.edu.sg/home/ehchua/programming/java/JavaGame_TicTacToe_AI.html)
 
+[Reinforcement learning with tic tac toe](https://github.com/rolyatmax/tictactoe)
+
 ### Connect four
 [Connect Four and Minimax](https://lukasvermeer.wordpress.com/2011/09/24/connect-four-and-minimax/)
