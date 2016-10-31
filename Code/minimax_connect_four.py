@@ -30,6 +30,7 @@ class Game:
         #print(printed_board[2][0] + '|' + printed_board[2][1] + '|' + printed_board[2][2])
 
     def check_winner(self):
+        pass
         # TODO Code win condition
 
     def no_winner(self):
@@ -43,7 +44,12 @@ class Game:
         return self.check_winner() or self.no_winner()
 
     def place_turn(self, x):
-        # TODO
+        for y in range(len(self.board) - 1, -1, -1):
+            if not self.board[y][x]:
+                self.board[y][x] = self.turn
+                self.turn *= -1
+                return True
+        return False
 
     def available_moves(self):
         available_moves = []
