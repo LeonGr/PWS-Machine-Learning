@@ -54,7 +54,15 @@ class Game:
     def available_moves(self):
         available_moves = []
 
-        # TODO
+        for x in range(7):
+            y = 5
+            while self.board[y][x]:
+                y -= 1
+                if y < 0:
+                    break
+
+            if not y < 0:
+                available_moves.append(x)
 
         return available_moves
 
@@ -87,7 +95,7 @@ def minimax(game, depth, alpha, beta):
     # Populate the scores array, recursing as needed
     for move in game.available_moves():
         possible_game = deepcopy(game)
-        possible_game.place_turn(move[0], move[1])
+        possible_game.place_turn(move)
 
         game_score = minimax(possible_game, depth + 1, alpha, beta)
 
@@ -137,6 +145,7 @@ while True:
 
     if game.turn is 1:
         game.print_board()
+        print(game.available_moves())
 
         moveX = int(input("x: "))
 
