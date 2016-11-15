@@ -22,8 +22,32 @@ class Game:
             print(printed_row)
 
     def check_winner(self):
-        pass
-        # TODO Code win condition
+        tile = 1
+        # check horizontal spaces
+        for y in range(6):
+            for x in range(4):
+                if self.board[y][x] == self.board[y][x + 1] == self.board[y][x + 2] == self.board[y][x + 3] != 0:
+                    return self.board[y][x]
+
+        # check vertical spaces
+        for x in range(7):
+            for y in range(3):
+                if self.board[y][x] == self.board[y + 1][x] == self.board[y + 2][x] == self.board[y + 3][x] != 0:
+                    return self.board[y][x]
+
+        ## check / diagonal spaces
+        for x in range(4):
+            for y in range(3, 6):
+                if self.board[x][y] == self.board[y - 1][x + 1] == self.board[y - 2][x + 2] == self.board[y - 3][x + 3] != 0:
+                    return self.board[y][x]
+
+        ## check \ diagonal spaces
+        for x in range(4):
+            for y in range(3):
+                if self.board[y][x] == self.board[y + 1][x + 1] == self.board[y + 2][x + 2] == self.board[y + 3][x + 3] != 0:
+                    return self.board[y][x]
+
+        return 0
 
     def no_winner(self):
         for x in self.board:
