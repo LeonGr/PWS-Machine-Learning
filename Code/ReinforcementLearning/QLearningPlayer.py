@@ -1,3 +1,5 @@
+from copy import deepcopy
+from random import random, choice
 from Player import Player
 
 
@@ -14,16 +16,41 @@ class QLearningPlayer(Player):
 		self.last_move = None
 
 	def getQ(self, state, action):
-		# encourage exploration; "optimistic" 1.0 initial values
+		# encourage exploration
+		# 'Optimistic' 1.0 initial values
 		if self.q.get((state, action)) is None:
 			self.q[(state, action)] = 1.0
 		return self.q.get((state, action))
 
 	def move(self, board):
-		pass
+		self.last_board = deepcopy(board)
+		actions = self.available_moves(board)
+
+		if random() < self.epsilon:
+			# Go on exploration
+			self.last_move = choice(actions)
+			return self.last_move
+
+		# Get list with Q values
+		q_list = [self.getQ(self.last_board, action) for action in actions]
+		maxQ = max(q_list)
+
+		if qs.count(maxQ) > 1:
+			# Choose a random best option
+			best_options = [i for i in range(len(actions)) if q_list[i] == maxQ]
+			i = random.choice(best_options)
+		else:
+			i = q_list.index(maxQ)
+
+		self.last_move = actions[i]
+		return actions[i]
 
 	def reward(self, value, board):
-		pass
+		if self.last_move:
+			self.learn(self.last_board, self.last_move, value, deepcopy(board))
 
 	def learn(self, state, action, reward, result_state):
-		pass
+		previous = self.getQ(state, action)
+		max_q_new = max([self.getQ(result_state, action) for action in self.available_moves(state)])
+		# Q function
+		self.q[(state, action)] = previous + self.alpha * ((reward + self.gamma  * max_q_new) - previous)

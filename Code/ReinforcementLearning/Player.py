@@ -1,6 +1,14 @@
-class Player(Object):
+class Player(object):
 	def __init__(self):
 		self.species = "human"
+
+	def move(self, board):
+		x = int(input("x: "))
+		y = int(input("y: "))
+		return [x, y]
+
+	def reward(self, value, board):
+		pass
 
 	def available_moves(self, board):
 		moves = []

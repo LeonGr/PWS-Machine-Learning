@@ -7,6 +7,13 @@ from TicTacToe import TicTacToe
 p1 = QLearningPlayer()
 p2 = QLearningPlayer()
 
-# Create the game
-game = TicTacToe(p1, p2)
-game.print_board()
+# Train the computer
+for i in range(int(5e3)):
+	game = TicTacToe(p1, p2)
+	game.play_game()
+
+p1 = Player()
+
+while True:
+	game = TicTacToe(p1, p2)
+	game.play_game()
