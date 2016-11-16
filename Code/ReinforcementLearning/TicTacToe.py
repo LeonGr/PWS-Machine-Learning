@@ -3,6 +3,10 @@ class TicTacToe:
 		self.board = [[0 for x in range(3)] for y in range(3)]
 		self.player1, self.player2 = player1, player2
 
+	def play_game(self):
+		# Let this function handle the gameplay
+		pass
+
 	def print_board(self):
 		printed_board = []
 

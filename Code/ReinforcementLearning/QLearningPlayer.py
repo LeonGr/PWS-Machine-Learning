@@ -1,5 +1,9 @@
-class QLearningPlayer:
+from Player import Player
+
+
+class QLearningPlayer(Player):
 	def __init__(self, epsilon=0.2, alpha=0.3, gamma=0.9):
+		self.species = "computer"
 		self.q = {} # (state, action) keys: Q values
 		self.epsilon = epsilon # Chance of random exploration
 		self.alpha = alpha # Learning rate
