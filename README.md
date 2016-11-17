@@ -9,8 +9,9 @@ Machine learning
 
 Hoe schrijf je een programma dat een computer leert een spel te spelen?
 
-- Hoe kun je een computer laten leren?
-- Welke manier van machine learning is het meest efficiënt? (Vraag aanpassen?)
+- Welke vorm van machine learning gaan we gebruiken?
+- Welk spel gaat de computer leren spelen?
+- Hoe pas je machine learning toe op dit spel?
 
 ### Plan van aanpak
 - Relevante informatie zoeken over onderwerp
@@ -22,6 +23,11 @@ Hoe schrijf je een programma dat een computer leert een spel te spelen?
 
 ### Het huidige plan
 We gaan gebruik maken van Reinforcement learning.
+
+### Presentatie
+- Demospel
+- Uitleg reinforcement learning (vertellen dat minimax niet werkt op een gegeven moment)
+
 
 ## Spel ideeën
 - Tic-tac-toe
