@@ -1,3 +1,4 @@
+from json import dump, load
 from copy import deepcopy
 from random import random, choice
 from Player import Player
@@ -59,3 +60,16 @@ class QLearningPlayer(Player):
 		state = ",".join(str(cell) for row in state for cell in row)
 		action = ",".join(str(i) for i in action)
 		self.q[(state, action)] = previous + self.alpha * ((reward + self.gamma  * max_q_new) - previous)
+
+	# For saving and loading the q
+	def saveQ(self):
+		with open("q.txt", "w") as file:
+			file.write(repr(self.q))
+
+	def loadQ(self):
+		with open("q.txt", "r") as file:
+			file = file.read()
+			try:
+				self.q = eval(file)
+			except ValueError:
+				self.q = {}
