@@ -61,12 +61,12 @@ class QLearningPlayer(Player):
 		self.q[(state, action)] = previous + self.alpha * ((reward + self.gamma  * max_q_new) - previous)
 
 	# For saving and loading the q
-	def saveQ(self):
-		with open("q.txt", "w") as file:
+	def saveQ(self, file_name="q"):
+		with open(file_name + ".txt", "w") as file:
 			file.write(repr(self.q))
 
-	def loadQ(self):
-		with open("q.txt", "r") as file:
+	def loadQ(self, file_name="q"):
+		with open(file_name + ".txt", "r") as file:
 			file = file.read()
 			try:
 				self.q = eval(file)
