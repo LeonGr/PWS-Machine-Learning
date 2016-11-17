@@ -16,6 +16,9 @@ class QLearningPlayer(Player):
 		self.last_move = None
 
 	def getQ(self, state, action):
+		# Do this so it can write to self.q
+		state = ",".join(str(cell) for row in state for cell in row)
+		action = ",".join(str(i) for i in action)
 		# encourage exploration
 		# 'Optimistic' 1.0 initial values
 		if self.q.get((state, action)) is None:
@@ -35,10 +38,10 @@ class QLearningPlayer(Player):
 		q_list = [self.getQ(self.last_board, action) for action in actions]
 		maxQ = max(q_list)
 
-		if qs.count(maxQ) > 1:
+		if q_list.count(maxQ) > 1:
 			# Choose a random best option
-			best_options = [i for i in range(len(actions)) if q_list[i] == maxQ]
-			i = random.choice(best_options)
+			best_options = [i for i in range(len(actions)) if q_list[i] is maxQ]
+			i = choice(best_options)
 		else:
 			i = q_list.index(maxQ)
 
@@ -53,4 +56,6 @@ class QLearningPlayer(Player):
 		previous = self.getQ(state, action)
 		max_q_new = max([self.getQ(result_state, action) for action in self.available_moves(state)])
 		# Q function
+		state = ",".join(str(cell) for row in state for cell in row)
+		action = ",".join(str(i) for i in action)
 		self.q[(state, action)] = previous + self.alpha * ((reward + self.gamma  * max_q_new) - previous)

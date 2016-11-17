@@ -2,6 +2,9 @@ class Player(object):
 	def __init__(self):
 		self.species = "human"
 
+	def startGame(self):
+		pass
+
 	def move(self, board):
 		x = int(input("x: "))
 		y = int(input("y: "))
