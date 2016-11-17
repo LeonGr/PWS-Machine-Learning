@@ -64,12 +64,12 @@ class Game:
         else: return False
 
     def available_moves(self):
+        order = [[1, 1], [0, 0], [2, 0], [2, 2], [0, 2], [1, 0], [2, 1], [1, 2], [0, 1]]
         available_moves = []
 
-        for y in range(len(self.board)):
-            for x in range(len(self.board[y])):
-                if not self.board[y][x]:
-                    available_moves.append([x, y])
+        for x, y in order:
+            if not self.board[y][x]:
+                available_moves.append([x, y])
 
         return available_moves
 
