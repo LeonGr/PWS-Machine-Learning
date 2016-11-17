@@ -19,7 +19,7 @@ for i in range(int(1e6)):
 
 deltaTime = clock() - startTime
 m, s = divmod(deltaTime, 60)
-print("It took " + str(m) + " minutes and " + str(s) + " seconds to play 1 million games")
+print("It took " + str(int(m)) + " minutes and " + str(s) + " seconds to play 1 million games")
 
 p1 = Player()
 p2.epsilon = 0
