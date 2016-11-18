@@ -9,3 +9,6 @@ Dit zegt hoe belangrijk je komende zetten wilt maken. Bij een waarde van 0 kijkt
 
 ##### Alpha: Learning rate
 Hoeveel hoeveel de computer leert. Bij 0 zal de computer niks leren, terwijl het bij 1 alleen de laatste zet meeneemt en de rest hem niet boeit.
+
+### Idee
+Bij een bepaalde state en action hoort een Q-waarde. Op het moment dat de computer aan de beurt is, kijkt het naar alle Q-waarden van de huidige state en de mogelijk actions de hoogste daarvan dat is de action die de computer dan daadwerkelijk uitvoerd. Om te een bepaalde Q-waarde te komen gebruikt de computer de bovenstaande formule.
