@@ -27,6 +27,9 @@ We gaan gebruik maken van Reinforcement learning.
 ### Presentatie
 [Powerpoint](https://1drv.ms/p/s!AiQF6y_ZgpLVgb4sp4Xk-I4pp5ZecQ)
 
+## Ideeën Presentatie
+- Laat zien dat het programma ook leert tijdens het spelen
+
 - Demospel
 - Uitleg reinforcement learning (vertellen dat minimax niet werkt op een gegeven moment?)
 
