@@ -17,7 +17,6 @@ class ConnectFour:
 
 			if player.species is "human":
 				self.print_board()
-				print(self.board)
 
 			# Ask for players move
 			move = player.move(self.board)
