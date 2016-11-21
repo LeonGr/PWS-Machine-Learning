@@ -2,6 +2,7 @@ from time import clock
 from QLearningPlayer import QLearningPlayer
 from Player import Player
 from TicTacToe import TicTacToe
+from ConnectFour import ConnectFour
 
 
 def train(games):
@@ -11,7 +12,7 @@ def train(games):
 	# Train computer
 	for i in range(int(games)):
 		if i % 1000 == 0: print(i)
-		game = TicTacToe(p1, p2)
+		game = ConnectFour(p1, p2)
 		game.play_game()
 
 	deltaTime = clock() - startTime
@@ -23,13 +24,12 @@ p1 = QLearningPlayer()
 p2 = QLearningPlayer()
 
 # Do your own stuff
-train(int(1e6))
-
+train(int(1e4))
 
 # Let the computer play againt a real player
 p1 = Player()
 p2.epsilon = 0
 
 while True:
-	game = TicTacToe(p1, p2)
+	game = ConnectFour(p1, p2)
 	game.play_game()
