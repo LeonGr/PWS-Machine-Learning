@@ -44,7 +44,7 @@ class ConnectFour:
 				return True
 		return False
 
-	def player_wins(self, turn): # TODO FIX WINSTATE
+	def player_wins(self, turn):
 		# check horizontal spaces
 		for y in range(6):
 			for x in range(4):
@@ -60,7 +60,7 @@ class ConnectFour:
 		## check / diagonal spaces
 		for x in range(4):
 			for y in range(3, 6):
-				if self.board[x][y] == self.board[y - 1][x + 1] == self.board[y - 2][x + 2] == self.board[y - 3][x + 3] == turn:
+				if self.board[y][x] == self.board[y - 1][x + 1] == self.board[y - 2][x + 2] == self.board[y - 3][x + 3] == turn:
 					return True
 
 		## check \ diagonal spaces
