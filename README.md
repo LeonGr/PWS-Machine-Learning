@@ -10,7 +10,7 @@ Machine learning
 Hoe schrijf je een programma dat een computer leert een spel te spelen?
 
 - Welke vorm van machine learning gaan we gebruiken?
-- Welk spel gaat de computer leren spelen?
+- Welk spel is handig om de computer te laten leren spelen?
 - Hoe pas je machine learning toe op dit spel?
 
 ### Plan van aanpak
