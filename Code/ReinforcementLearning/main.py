@@ -24,7 +24,7 @@ p1 = QLearningPlayer()
 p2 = QLearningPlayer()
 
 # Do your own stuff
-train(int(1e4))
+train(int(1e6))
 
 # Let the computer play againt a real player
 p1 = Player()

@@ -44,7 +44,7 @@ class ConnectFour:
 				return True
 		return False
 
-	def player_wins(self, turn):
+	def player_wins(self, turn): # TODO FIX WINSTATE
 		# check horizontal spaces
 		for y in range(6):
 			for x in range(4):
