@@ -25,9 +25,10 @@ Hoe schrijf je een programma dat een computer leert een spel te spelen?
 We gaan gebruik maken van Reinforcement learning.
 
 ### Presentatie
-- Demospel
-- Uitleg reinforcement learning (vertellen dat minimax niet werkt op een gegeven moment)
+[Powerpoint](https://1drv.ms/p/s!AiQF6y_ZgpLVgb4sp4Xk-I4pp5ZecQ)
 
+- Demospel
+- Uitleg reinforcement learning (vertellen dat minimax niet werkt op een gegeven moment?)
 
 ## Spel ideeën
 - Tic-tac-toe
