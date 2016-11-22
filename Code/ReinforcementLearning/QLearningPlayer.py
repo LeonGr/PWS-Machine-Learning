@@ -18,7 +18,7 @@ class QLearningPlayer(Player):
 	def getQ(self, state, action):
 		# Do this so it can write to self.q
 		state = ",".join(str(cell) for row in state for cell in row)
-		#action = ",".join(str(i) for i in action)
+		action = ",".join(str(i) for i in action)
 		# encourage exploration
 		# 'Optimistic' 1.0 initial values
 		if self.q.get((state, action)) is None:
@@ -57,7 +57,7 @@ class QLearningPlayer(Player):
 		max_q_new = max([self.getQ(result_state, action) for action in self.available_moves(state)])
 		# Q function
 		state = ",".join(str(cell) for row in state for cell in row)
-		#action = ",".join(str(i) for i in action)
+		action = ",".join(str(i) for i in action)
 		self.q[(state, action)] = previous + self.alpha * ((reward + self.gamma  * max_q_new) - previous)
 
 	# For saving and loading the q

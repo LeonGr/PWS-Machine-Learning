@@ -12,7 +12,7 @@ def train(games):
 	# Train computer
 	for i in range(int(games)):
 		if i % 1000 == 0: print(i)
-		game = ConnectFour(p1, p2)
+		game = TicTacToe(p1, p2)
 		game.play_game()
 
 	deltaTime = clock() - startTime
@@ -31,5 +31,5 @@ p1 = Player()
 p2.epsilon = 0
 
 while True:
-	game = ConnectFour(p1, p2)
+	game = TicTacToe(p1, p2)
 	game.play_game()
