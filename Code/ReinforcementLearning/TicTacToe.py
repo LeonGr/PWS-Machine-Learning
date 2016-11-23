@@ -68,6 +68,13 @@ class TicTacToe:
 
         return False
 
+    def board_full(self):
+        for row in self.board:
+            for cell in row:
+                if cell == 0:
+                    return False
+        return True
+
     def print_board(self):
         printed_board = []
 
