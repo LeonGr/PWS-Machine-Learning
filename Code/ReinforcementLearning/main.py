@@ -11,7 +11,7 @@ def train(games):
 	startTime = clock()
 
 	# Train computer
-	for i in range(int(games)):
+	for i in range(1, games + 1):
 		if i % 1000 == 0: print(i)
 		game = TicTacToe(p1, p2)
 		game.play_game()
