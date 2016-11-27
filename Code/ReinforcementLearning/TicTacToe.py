@@ -1,3 +1,5 @@
+import json
+
 class TicTacToe:
     def __init__(self, player1, player2):
         self.board = [[0 for x in range(3)] for y in range(3)]
@@ -20,7 +22,8 @@ class TicTacToe:
                 self.print_board()
 
             # Ask for players move
-            move = player.move(self.board)
+            move = player.move(self.board, True)
+            # move = get_last_move
             if self.board[move[1]][move[0]]:
                 # Can't place move
                 break
@@ -43,6 +46,71 @@ class TicTacToe:
                 break
             other_player.reward(0, self.board)
             self.turn *= -1
+
+    def start_game(self, ai_start=False):
+        self.player1.startGame()
+        self.player2.startGame()
+        if ai_start:
+            self.turn = -1
+            self.player_turn(0,0)
+
+    def player_turn(self, x, y):
+
+        if self.turn is 1:
+            player, other_player = self.player1, self.player2
+        else:
+            player, other_player = self.player2, self.player1
+
+        if player.species is "human":
+            self.print_board()
+            move = [int(x), int(y)]
+        else:
+            move = player.move(self.board)
+
+        if self.board[move[1]][move[0]]:
+                # Can't place move
+                print('illegal move')
+
+        # Place move
+        self.board[move[1]][move[0]] = self.turn
+        with open("static/test.json", "r") as jsonFile:
+            data = json.load(jsonFile)
+
+        print('Move: ' + str(move))
+        print('Old data: ' + str(data))
+        data["board"][move[1]][move[0]] = self.turn
+        data["last_move"] = [move[0],move[1]]
+        print('New data: ' + str(data))
+
+        with open("static/test.json", "w") as jsonFile:
+            jsonFile.write(json.dumps(data))
+
+        # See if the game has ended
+        if self.player_wins(self.turn):
+            player.reward(1, self.board)
+            other_player.reward(-1, self.board)
+            if self.turn is 1:
+                self.score['Player1wins'] += 1
+            else:
+                self.score['Player2wins'] += 1
+            print('game ended')
+        if self.board_full(): # Tie
+            player.reward(0.5, self.board)
+            other_player.reward(0.5, self.board)
+            self.score['Ties'] += 1
+            print('tie')
+        other_player.reward(0, self.board)
+        self.turn *= -1
+
+        if self.turn is -1:
+            self.player_turn(0,0)
+
+        self.print_board()
+        print(str([x, y]))
+
+
+        return [x, y]
+
 
     def player_wins(self, turn):
         # print('check win for turn %d' % turn)

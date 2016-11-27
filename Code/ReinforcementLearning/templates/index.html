@@ -1,19 +1,51 @@
 <html>
     <head>
-        <title>Test</title>
+        <title>Tic Tac Toe Demo</title>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        $.ajax({
-            type : 'GET',
-            dataType : 'json',
-            url: 'json/test.json',
-            success : function(data) {
-                console.log(data);
-            }
-        });
-    </script>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+        <link type='text/css' rel='stylesheet' href="{{ url_for('static', filename='style.css') }}" />
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#load').click(function(){
+                    $.ajax({
+                        type : 'GET',
+                        dataType : 'json',
+                        url: '/json/test.json',
+                        success : function(data) {
+                            console.log(data);
+                        }
+                    });
+                })
+            })
+        </script>
     </head>
     <body>
         {{ result }}
+        <br>
+        <!--<button id="load">LOAD</button>-->
+        <div id='wrapper'>
+            <p id='text'>Aantal keer:</p>
+            <input type="text" id='train_amount' value=0>
+            <button id='train'>TRAIN</button>
+
+            <!--<p id='vraag'>Wie begint?</p>-->
+            <!--<button id='begin'>SPELER</button>-->
+        </div>
+
+
+        <!--<div id="progress_bar">-->
+            <!--<div id="bar"></div>-->
+        <!--</div>-->
+
+        <div id="content">
+            <h1>Tic Tac Toe</h1>
+            <div id="center">
+                <div id="reset">
+                    <h1 id="gameOverText"></h1>
+                    <h2 id="resetButton">reset</h2>
+                </div>
+            </div>
+            <div id="tictactoe"></div>
+        </div>
     </body>
 </html>

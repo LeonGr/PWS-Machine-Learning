@@ -1,3 +1,5 @@
+import json, time
+
 class Player(object):
 	def __init__(self):
 		self.species = "human"
@@ -6,9 +8,35 @@ class Player(object):
 		pass
 
 	def move(self, board):
-		x = int(input("x: "))
-		y = int(input("y: "))
-		return [x, y]
+                x = int(input("x: "))
+                y = int(input("y: "))
+                # def get_last_move():
+                    # print('do you evne go gheree?')
+                    # with open("static/test.json", "r") as jsonFile:
+                        # data = json.load(jsonFile)
+
+                    # if (data["last_move"] is not None):
+                        # x = data["last_move"][0]
+                        # y = data["last_move"][1]
+
+                        # print(data["last_move"] is None)
+                        # print(data["last_move"] is False)
+                        # print(data["last_move"] is not None)
+                        # data["last_move"] = None
+                        # print(data["last_move"] is None)
+                        # print(data["last_move"] is False)
+                        # print(data["last_move"] is not None)
+
+                        # with open("static/test.json", "w") as jsonFile:
+                            # jsonFile.write(json.dumps(data))
+
+                        # print(str([x, y]))
+                        # return [x, y]
+
+                # get_last_move()
+
+                return [x, y]
+
 
 	def reward(self, value, board):
 		pass

@@ -1,0 +1,148 @@
+body {
+    font-family: Helvetica;
+}
+
+#content h1 {
+    padding-top: 10px;
+    text-align: center;
+}
+
+#tictactoe {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+    border: 1px solid black;
+    width: 606px;
+}
+
+#center {
+    position: absolute;
+    left: 50%;
+    pointer-events:none;
+}
+
+#reset {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+    border: 1px solid black;
+    width: 606px;
+    height: 606px;
+    position: relative;
+    left: -50%;
+    pointer-events:none;
+    transition: background-color 1s;
+}
+
+#vraag {
+    position: absolute;
+    top: 50%;
+    margin-left: 50px;
+}
+
+#begin {
+    position: absolute;
+    top: calc(50% + 50px);
+    margin-left: 50px;
+}
+
+#text {
+    position: absolute;
+    top: calc(50% - 120px);
+    margin-left: 50px;
+}
+
+#train_amount {
+    position: absolute;
+    top: calc(50% - 80px);
+    width: 100px;
+    margin-left: 50px;
+}
+
+#train {
+    position: absolute;
+    top: calc(50% - 50px);
+}
+
+button {
+    width: 100px;
+    height: 40px;
+    margin-left: 50px;
+    background-color: #5a8dff;
+    color: white;
+    font-size: 18;
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    outline: none;
+}
+
+
+#reset h1 {
+    margin-top: 100px;
+    /*color: white;*/
+}
+
+#gameOverText {
+    color: black;
+    text-align: center;
+}
+
+#resetButton {
+
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    display: block;
+
+    /*border: 1px solid black;*/
+    border-radius: 10px;
+
+    width: 180px;
+    padding: 15px;
+
+    font-size: 50px;
+    font-family: 'oswald';
+    text-align: center;
+    color: black;
+
+    /*background-color: rgba(102, 102, 102, 1);*/
+    /*background-color: #5a8dff;*/
+    background-color: white;
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+    cursor: pointer;
+    pointer-events: all;
+
+    display: none;
+}
+
+p {
+    text-align: center;
+
+    margin: 20px 0 50px 0;
+}
+
+.block {
+    font-size: 20px;
+    /*white-space: pre-wrap*/
+    word-break: break-all;
+    word-wrap: break-word;
+    width: 200px;
+    height: 200px;
+
+    border: 1px solid black;
+
+    display: inline-block;
+    vertical-align: top;
+
+    transition: background-color 0.2s;
+}
