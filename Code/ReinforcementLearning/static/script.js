@@ -193,7 +193,7 @@ window.onload = function() {
                         blocks[WINNING_MOVES[i][2]].style.backgroundColor = green;
 
                         //reset.style.backgroundColor = 'rgba(100, 100, 100, 0.7)';
-                        gameOver.innerHTML =  'De ' + (playerToCheck == -1 ? 'Mens ' : 'Computer ') + 'heeft gewonnen';
+                        gameOver.innerHTML =  'De ' + (playerToCheck == -1 ? 'mens ' : 'computer ') + 'heeft gewonnen';
                         resetButton.style.display = 'block';
 
                         gameRunning = false;
