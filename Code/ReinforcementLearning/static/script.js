@@ -34,8 +34,8 @@ window.onload = function() {
             [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]
         ],
         gameRunning = true,
-        playerOneColor = 'rgb(119, 128, 241)',
-        playerTwoColor = 'rgb(69, 74, 138)',
+        playerOneColor = '#F44336', // Player two color
+        playerTwoColor = '#2196F3', // Player one color
         reset = document.getElementById('reset'),
         gameOver = document.getElementById('gameOverText'),
         resetButton = document.getElementById('resetButton');
