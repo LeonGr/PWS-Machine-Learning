@@ -50,8 +50,6 @@ class QLearningPlayer(Player):
             with open("static/test.json", "w") as jsonFile:
                 jsonFile.write(json.dumps(data))
 
-
-
         if q_list.count(maxQ) > 1:
             # Choose a random best option
             best_options = [i for i in range(len(actions)) if q_list[i] is maxQ]
