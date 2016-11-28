@@ -6,7 +6,6 @@ window.onload = function() {
     function reset_python_board(){
         $.ajax({
             type : 'GET',
-            dataType : 'json',
             url: 'reset',
             success : function(data) {
                 console.log(data);
@@ -43,7 +42,6 @@ window.onload = function() {
     $('#train').click(function(){
         $.ajax({
             type : 'GET',
-            dataType : 'json',
             url: 'train/' + $('#train_amount').val(),
             success : function(data) {
                 console.log(data);
@@ -61,7 +59,7 @@ window.onload = function() {
                         if (data["last_move"]){
                             var bigNumber = data.last_move[0] + data.last_move[1] * 3
                             var block = document.getElementsByClassName('block' + bigNumber)
-                            setBlock(turn, block[0])
+                            setBlock(turn, block[0], 'check')
                         }
                         return
                     }
@@ -77,7 +75,6 @@ window.onload = function() {
         reset_board()
         $.ajax({
             type : 'GET',
-            dataType : 'json',
             url: 'swap',
             success : function(data) {
                 console.log('test')
@@ -86,7 +83,7 @@ window.onload = function() {
                 if (data["last_move"]){
                     var bigNumber = data.last_move[0] + data.last_move[1] * 3
                     var block = document.getElementsByClassName('block' + bigNumber)
-                    setBlock(turn, block[0])
+                    setBlock(turn, block[0], 'begin')
                 }
             },
             error: function(error){
@@ -114,29 +111,40 @@ window.onload = function() {
                 if(this.style.backgroundColor != 'white'){
                     return
                 }
-                setBlock(turn, this);
+                setBlock(turn, this, 'click')
+                if(checkForVictory(turn)){
+                    console.log('wow');
+                    return;
+                }
                 x = (this.id % 3)
                 y = (Math.floor(this.id / 3))
                 $.ajax({
                     type : 'GET',
-                    dataType : 'json',
                     url: 'move/' + x + '/' + y + '/' + turn, // Not sure why this is * -1
                     success : function(data) {
                         console.log(data);
-                    }
-                });
-                $.ajax({
-                    type : 'GET',
-                    dataType : 'json',
-                    url: 'json/test.json',
-                    success : function(data) {
-                        console.log(data.qvalues);
-                        display_qvalues(data.qvalues);
-                        console.log(data.last_move);
-                        var bigNumber = data.last_move[0] + data.last_move[1] * 3;
-                        console.log(bigNumber);
-                        var block = document.getElementsByClassName('block' + bigNumber);
-                        setBlock(turn, block[0]);
+                        $.ajax({
+                            type : 'GET',
+                            dataType : 'json',
+                            url: 'json/test.json',
+                            success : function(data) {
+                                console.log(data)
+                                console.log(data.qvalues);
+                                display_qvalues(data.qvalues);
+                                console.log(data.last_move);
+                                var bigNumber = data.last_move[0] + data.last_move[1] * 3;
+                                console.log(bigNumber);
+                                var block = document.getElementsByClassName('block' + bigNumber);
+                                if(checkForVictory(turn)) {
+                                    return;
+                                }
+                                setBlock(turn, block[0], 'ajax');
+                                if(checkForVictory(turn)) {
+                                    console.log('whoa')
+                                    return;
+                                }
+                            }
+                        });
                     }
                 });
             }
@@ -145,7 +153,8 @@ window.onload = function() {
 
     // Give block a color
 
-    function setBlock(player, block) {
+    function setBlock(player, block, whom) {
+        //alert('setblock called by ' + whom);
         if (player === 1 && block.style.backgroundColor != playerTwoColor) {
             block.style.backgroundColor = playerOneColor;
             turn = -1;
@@ -163,9 +172,11 @@ window.onload = function() {
             return false;
         }
 
-        if(checkForVictory(player)) console.log('WIN')
+        //checkForVictory(player)
+
         checkBlock++;
         checkTie();
+        return false
     }
 
     // Check with all the posible WINNING_MOVES if there's a winner
@@ -176,12 +187,12 @@ window.onload = function() {
                 blocks[WINNING_MOVES[i][1]].taken == playerToCheck &&
                     blocks[WINNING_MOVES[i][2]].taken == playerToCheck) {
 
-                        // blocks[WINNING_MOVES[i][0]].style.backgroundColor = '#5d914c';
-                        // blocks[WINNING_MOVES[i][1]].style.backgroundColor = '#5d914c';
-                        // blocks[WINNING_MOVES[i][2]].style.backgroundColor = '#5d914c';
+                         blocks[WINNING_MOVES[i][0]].style.backgroundColor = '#5d914c';
+                         blocks[WINNING_MOVES[i][1]].style.backgroundColor = '#5d914c';
+                         blocks[WINNING_MOVES[i][2]].style.backgroundColor = '#5d914c';
 
                         //reset.style.backgroundColor = 'rgba(100, 100, 100, 0.7)';
-                        gameOver.innerHTML = 'Player ' + (playerToCheck) + ' is the winner!';
+                        gameOver.innerHTML =  'De ' + (playerToCheck == -1 ? 'Mens ' : 'Computer ') + 'heeft gewonnen';
                         resetButton.style.display = 'block';
 
                         gameRunning = false;
@@ -226,26 +237,26 @@ window.onload = function() {
 
         $.ajax({
             type : 'GET',
-            dataType : 'json',
             url: 'start',
             success : function(data) {
                 console.log(data);
             }
         });
 
-        $.ajax({
-            type : 'GET',
-            dataType : 'json',
-            url: 'json/test.json',
-            success : function(data) {
-                console.log(data)
-                if (data["last_move"]){
-                    var bigNumber = data.last_move[0] + data.last_move[1] * 3
-                    var block = document.getElementsByClassName('block' + bigNumber)
-                    setBlock(turn, block[0])
-                }
-            }
-        });
+        // THis causes problems but we'll need this if we want the computer to start
+        //$.ajax({
+            //type : 'GET',
+            //dataType : 'json',
+            //url: 'json/test.json',
+            //success : function(data) {
+                //console.log(data)
+                //if (data["last_move"]){
+                    //var bigNumber = data.last_move[0] + data.last_move[1] * 3
+                    //var block = document.getElementsByClassName('block' + bigNumber)
+                    //setBlock(turn, block[0], 'reset')
+                //}
+            //}
+        //});
     }
 
     resetButton.onclick = function(){ reset_board() }
