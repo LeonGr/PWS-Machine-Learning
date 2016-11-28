@@ -186,10 +186,11 @@ window.onload = function() {
             if (blocks[WINNING_MOVES[i][0]].taken == playerToCheck &&
                 blocks[WINNING_MOVES[i][1]].taken == playerToCheck &&
                     blocks[WINNING_MOVES[i][2]].taken == playerToCheck) {
+                        var green = "#4CAF50";
 
-                         blocks[WINNING_MOVES[i][0]].style.backgroundColor = '#5d914c';
-                         blocks[WINNING_MOVES[i][1]].style.backgroundColor = '#5d914c';
-                         blocks[WINNING_MOVES[i][2]].style.backgroundColor = '#5d914c';
+                        blocks[WINNING_MOVES[i][0]].style.backgroundColor = green;
+                        blocks[WINNING_MOVES[i][1]].style.backgroundColor = green;
+                        blocks[WINNING_MOVES[i][2]].style.backgroundColor = green;
 
                         //reset.style.backgroundColor = 'rgba(100, 100, 100, 0.7)';
                         gameOver.innerHTML =  'De ' + (playerToCheck == -1 ? 'Mens ' : 'Computer ') + 'heeft gewonnen';
