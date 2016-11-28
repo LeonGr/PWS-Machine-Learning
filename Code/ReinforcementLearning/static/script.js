@@ -27,15 +27,14 @@ window.onload = function() {
         board.appendChild(div)
     }
     // Declare variables
-    var
-        turn = 1,
+    var turn = 1,
         blocks = document.getElementsByClassName('block'),
         WINNING_MOVES = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]
         ],
         gameRunning = true,
-        playerOneColor = '#F44336', // Player two color
-        playerTwoColor = '#2196F3', // Player one color
+        playerOneColor = '#2196F3',
+        playerTwoColor = '#F44336',
         reset = document.getElementById('reset'),
         gameOver = document.getElementById('gameOverText'),
         resetButton = document.getElementById('resetButton');
@@ -121,7 +120,7 @@ window.onload = function() {
                 $.ajax({
                     type : 'GET',
                     dataType : 'json',
-                    url: 'move/' + x + '/' + y + '/' + turn * -1, // Not sure why this is * -1
+                    url: 'move/' + x + '/' + y + '/' + turn, // Not sure why this is * -1
                     success : function(data) {
                         console.log(data);
                     }
@@ -131,13 +130,13 @@ window.onload = function() {
                     dataType : 'json',
                     url: 'json/test.json',
                     success : function(data) {
-                        console.log(data.qvalues)
-                        display_qvalues(data.qvalues)
+                        console.log(data.qvalues);
+                        display_qvalues(data.qvalues);
                         console.log(data.last_move);
-                        var bigNumber = data.last_move[0] + data.last_move[1] * 3
-                        console.log(bigNumber)
-                        var block = document.getElementsByClassName('block' + bigNumber)
-                        setBlock(turn, block[0])
+                        var bigNumber = data.last_move[0] + data.last_move[1] * 3;
+                        console.log(bigNumber);
+                        var block = document.getElementsByClassName('block' + bigNumber);
+                        setBlock(turn, block[0]);
                     }
                 });
             }
@@ -147,15 +146,15 @@ window.onload = function() {
     // Give block a color
 
     function setBlock(player, block) {
-        if (player === -1 && block.style.backgroundColor != playerTwoColor) {
+        if (player === 1 && block.style.backgroundColor != playerTwoColor) {
             block.style.backgroundColor = playerOneColor;
-            turn = 1;
+            turn = -1;
             block.taken = -1;
             block.style.fontSize = '40'
         }
-        else if (player === 1 && block.style.backgroundColor != playerOneColor) {
+        else if (player === -1 && block.style.backgroundColor != playerOneColor) {
             block.style.backgroundColor = playerTwoColor;
-            turn = -1;
+            turn = 1;
             block.taken = 1;
             block.style.fontSize = '40'
         }
@@ -177,9 +176,9 @@ window.onload = function() {
                 blocks[WINNING_MOVES[i][1]].taken == playerToCheck &&
                     blocks[WINNING_MOVES[i][2]].taken == playerToCheck) {
 
-                        //blocks[WINNING_MOVES[i][0]].style.backgroundColor = '#5d914c';
-                        //blocks[WINNING_MOVES[i][1]].style.backgroundColor = '#5d914c';
-                        //blocks[WINNING_MOVES[i][2]].style.backgroundColor = '#5d914c';
+                        // blocks[WINNING_MOVES[i][0]].style.backgroundColor = '#5d914c';
+                        // blocks[WINNING_MOVES[i][1]].style.backgroundColor = '#5d914c';
+                        // blocks[WINNING_MOVES[i][2]].style.backgroundColor = '#5d914c';
 
                         //reset.style.backgroundColor = 'rgba(100, 100, 100, 0.7)';
                         gameOver.innerHTML = 'Player ' + (playerToCheck) + ' is the winner!';
