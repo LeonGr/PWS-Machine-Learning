@@ -113,7 +113,6 @@ window.onload = function() {
                 }
                 setBlock(turn, this, 'click')
                 if(checkForVictory(turn)){
-                    console.log('wow');
                     return;
                 }
                 x = (this.id % 3)
@@ -140,7 +139,6 @@ window.onload = function() {
                                 }
                                 setBlock(turn, block[0], 'ajax');
                                 if(checkForVictory(turn)) {
-                                    console.log('whoa')
                                     return;
                                 }
                             }
@@ -212,7 +210,7 @@ window.onload = function() {
         if (checkBlock === 9) {
             gameRunning = false;
             reset.style.backgroundColor = 'rgba(100, 100, 100, 0.7)';
-            gameOver.innerHTML = 'It\'s a tie!';
+            gameOver.innerHTML = 'Gelijkspel';
             resetButton.style.display = 'block';
         }
     }
