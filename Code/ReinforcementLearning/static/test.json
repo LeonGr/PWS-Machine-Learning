@@ -1,1 +1,1 @@
-{"time": null, "last_move": [2, 1], "trained": 0, "board": [[0, -1, 0], [0, 1, -1], [1, 0, 0]], "qvalues": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]}
+{"last_move": null, "qvalues": null, "board": [[0, 0, 0], [0, 0, 0], [0, 0, 0]], "trained": 0, "time": null}
